@@ -22,7 +22,7 @@ public class BeerInventoryController {
   private final BeerInventoryRepository beerInventoryRepository;
   private final BeerInventoryMapper beerInventoryMapper;
 
-  @GetMapping("api/v1/beer/{beerId}/inventory")
+  @GetMapping("api/v1/beers/{beerId}/inventory")
   List<BeerInventoryDto> listBeersById(@PathVariable final UUID beerId) {
     log.debug("Finding Inventory for beerId:" + beerId);
 
