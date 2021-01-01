@@ -14,10 +14,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- * Created by jt on 2019-05-12.
- */
-
+/** Created by jt on 2019-05-12. */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -26,11 +23,9 @@ public class BeerDto implements Serializable {
 
   static final long serialVersionUID = -5815566940065181210L;
 
-  @Null
-  private UUID id;
+  @Null private UUID id;
 
-  @Null
-  private Integer version;
+  @Null private Integer version;
 
   @Null
   @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ssZ", shape = JsonFormat.Shape.STRING)
@@ -40,14 +35,11 @@ public class BeerDto implements Serializable {
   @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ssZ", shape = JsonFormat.Shape.STRING)
   private OffsetDateTime lastModifiedDate;
 
-  @NotBlank
-  private String beerName;
+  @NotBlank private String beerName;
 
-  @NotNull
-  private String beerStyle;
+  @NotNull private String beerStyle;
 
-  @NotNull
-  private String upc;
+  @NotNull private String upc;
 
   @JsonFormat(shape = JsonFormat.Shape.STRING)
   @Positive

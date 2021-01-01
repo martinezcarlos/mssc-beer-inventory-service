@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * Created by jt on 2019-05-31.
- */
+/** Created by jt on 2019-05-31. */
 @Slf4j
 @RequiredArgsConstructor
 @RestController
@@ -27,8 +25,7 @@ public class BeerInventoryController {
   List<BeerInventoryDto> listBeersById(@PathVariable final UUID beerId) {
     log.debug("Finding Inventory for beerId: {}", beerId);
 
-    return beerInventoryRepository.findAllByBeerId(beerId)
-        .stream()
+    return beerInventoryRepository.findAllByBeerId(beerId).stream()
         .map(beerInventoryMapper::beerInventoryToBeerInventoryDto)
         .collect(Collectors.toList());
   }

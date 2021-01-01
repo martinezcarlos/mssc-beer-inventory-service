@@ -10,9 +10,7 @@ import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- * Created by jt on 2019-07-21.
- */
+/** Created by jt on 2019-07-21. */
 @Slf4j
 @RequiredArgsConstructor
 @Component
@@ -26,10 +24,11 @@ public class NewInventoryListener {
 
     log.debug("Got Inventory: " + event.toString());
 
-    beerInventoryRepository.save(BeerInventory.builder()
-        .beerId(event.getBeerDto().getId())
-        .upc(event.getBeerDto().getUpc())
-        .quantityOnHand(event.getBeerDto().getQuantityOnHand())
-        .build());
+    beerInventoryRepository.save(
+        BeerInventory.builder()
+            .beerId(event.getBeerDto().getId())
+            .upc(event.getBeerDto().getUpc())
+            .quantityOnHand(event.getBeerDto().getQuantityOnHand())
+            .build());
   }
 }
