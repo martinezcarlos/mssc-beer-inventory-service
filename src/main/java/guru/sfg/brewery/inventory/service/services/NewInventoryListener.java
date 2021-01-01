@@ -1,9 +1,9 @@
-package guru.sfg.beer.inventory.service.services;
+package guru.sfg.brewery.inventory.service.services;
 
-import common.jms.events.NewInventoryEvent;
-import guru.sfg.beer.inventory.service.config.JmsConfig;
-import guru.sfg.beer.inventory.service.domain.BeerInventory;
-import guru.sfg.beer.inventory.service.repositories.BeerInventoryRepository;
+import guru.sfg.brewery.inventory.service.config.JmsConfig;
+import guru.sfg.brewery.inventory.service.domain.BeerInventory;
+import guru.sfg.brewery.inventory.service.repositories.BeerInventoryRepository;
+import guru.sfg.brewery.model.events.NewInventoryEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jms.annotation.JmsListener;

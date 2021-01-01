@@ -1,4 +1,4 @@
-package common.jms.events;
+package guru.sfg.brewery.model.events;
 
 import java.io.Serializable;
 import lombok.AllArgsConstructor;

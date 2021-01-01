@@ -1,8 +1,8 @@
-package guru.sfg.beer.inventory.service.web.controllers;
+package guru.sfg.brewery.inventory.service.web.controllers;
 
-import guru.sfg.beer.inventory.service.repositories.BeerInventoryRepository;
-import guru.sfg.beer.inventory.service.web.mappers.BeerInventoryMapper;
-import guru.sfg.beer.inventory.service.web.model.BeerInventoryDto;
+import guru.sfg.brewery.inventory.service.repositories.BeerInventoryRepository;
+import guru.sfg.brewery.inventory.service.web.mappers.BeerInventoryMapper;
+import guru.sfg.brewery.model.BeerInventoryDto;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;

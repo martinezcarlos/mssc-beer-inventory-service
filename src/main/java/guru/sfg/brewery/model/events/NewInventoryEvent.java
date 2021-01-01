@@ -1,4 +1,4 @@
-package common.jms.events;
+package guru.sfg.brewery.model.events;
 
 import lombok.NoArgsConstructor;
 

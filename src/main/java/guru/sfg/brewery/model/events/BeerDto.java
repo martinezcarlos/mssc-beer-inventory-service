@@ -1,4 +1,4 @@
-package common.jms.events;
+package guru.sfg.brewery.model.events;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import java.io.Serializable;

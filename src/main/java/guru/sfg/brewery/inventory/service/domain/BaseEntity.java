@@ -14,44 +14,57 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package guru.sfg.beer.inventory.service.domain;
+package guru.sfg.brewery.inventory.service.domain;
 
 import java.sql.Timestamp;
 import java.util.UUID;
 import javax.persistence.Column;
-import javax.persistence.Entity;
-import lombok.Builder;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.Version;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
+import org.hibernate.annotations.UpdateTimestamp;
 
 /** Created by jt on 2019-01-26. */
-@Getter
 @Setter
+@Getter
 @NoArgsConstructor
-@Entity
-public class BeerInventory extends BaseEntity {
+@MappedSuperclass
+public class BaseEntity {
 
+  @Id
+  @GeneratedValue(generator = "UUID")
+  @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
   @Type(type = "org.hibernate.type.UUIDCharType")
   @Column(length = 36, columnDefinition = "varchar(36)", updatable = false, nullable = false)
-  private UUID beerId;
+  private UUID id;
 
-  private String upc;
-  private Integer quantityOnHand = 0;
+  @Version private Long version;
 
-  @Builder
-  public BeerInventory(
+  @CreationTimestamp
+  @Column(updatable = false)
+  private Timestamp createdDate;
+
+  @UpdateTimestamp private Timestamp lastModifiedDate;
+
+  public BaseEntity(
       final UUID id,
       final Long version,
       final Timestamp createdDate,
-      final Timestamp lastModifiedDate,
-      final UUID beerId,
-      final String upc,
-      final Integer quantityOnHand) {
-    super(id, version, createdDate, lastModifiedDate);
-    this.beerId = beerId;
-    this.upc = upc;
-    this.quantityOnHand = quantityOnHand;
+      final Timestamp lastModifiedDate) {
+    this.id = id;
+    this.version = version;
+    this.createdDate = createdDate;
+    this.lastModifiedDate = lastModifiedDate;
+  }
+
+  public boolean isNew() {
+    return id == null;
   }
 }

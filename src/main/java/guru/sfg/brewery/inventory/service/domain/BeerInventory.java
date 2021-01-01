@@ -14,57 +14,44 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package guru.sfg.beer.inventory.service.domain;
+package guru.sfg.brewery.inventory.service.domain;
 
 import java.sql.Timestamp;
 import java.util.UUID;
 import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.Version;
+import javax.persistence.Entity;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
-import org.hibernate.annotations.UpdateTimestamp;
 
 /** Created by jt on 2019-01-26. */
-@Setter
 @Getter
+@Setter
 @NoArgsConstructor
-@MappedSuperclass
-public class BaseEntity {
+@Entity
+public class BeerInventory extends BaseEntity {
 
-  @Id
-  @GeneratedValue(generator = "UUID")
-  @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
   @Type(type = "org.hibernate.type.UUIDCharType")
   @Column(length = 36, columnDefinition = "varchar(36)", updatable = false, nullable = false)
-  private UUID id;
+  private UUID beerId;
 
-  @Version private Long version;
+  private String upc;
+  private Integer quantityOnHand = 0;
 
-  @CreationTimestamp
-  @Column(updatable = false)
-  private Timestamp createdDate;
-
-  @UpdateTimestamp private Timestamp lastModifiedDate;
-
-  public BaseEntity(
+  @Builder
+  public BeerInventory(
       final UUID id,
       final Long version,
       final Timestamp createdDate,
-      final Timestamp lastModifiedDate) {
-    this.id = id;
-    this.version = version;
-    this.createdDate = createdDate;
-    this.lastModifiedDate = lastModifiedDate;
-  }
-
-  public boolean isNew() {
-    return id == null;
+      final Timestamp lastModifiedDate,
+      final UUID beerId,
+      final String upc,
+      final Integer quantityOnHand) {
+    super(id, version, createdDate, lastModifiedDate);
+    this.beerId = beerId;
+    this.upc = upc;
+    this.quantityOnHand = quantityOnHand;
   }
 }
